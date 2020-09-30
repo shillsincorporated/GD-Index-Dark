@@ -359,7 +359,7 @@ function append_files_to_list(path, files) {
         p += "?a=view";
         c += " view";
       }*/
-      html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="/index.php?dir=${p}" class="${c}">
+      html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="${p}" class="${c}">
 	          <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	          <i class="mdui-icon material-icons">insert_drive_file</i>
 	            ${item.name}
@@ -842,8 +842,8 @@ function file_pdf(path) {
 // picture display
 function file_image(path) {
   var url = window.location.origin + path;
-  // console.log(window.location.href)
-  const currentPathname = window.location.href
+  // console.log(window.location.pathname)
+  const currentPathname = window.location.pathname
   const lastIndex = currentPathname.lastIndexOf('/');
   const fatherPathname = currentPathname.slice(0, lastIndex + 1);
   // console.log(fatherPathname)
@@ -997,16 +997,14 @@ function markdown(el, data) {
 
 // Listen for fallback events
 window.onpopstate = function () {
-  var path = window.location.search;
-  var path = path.replace('?dir=', '');
+  var path = window.location.pathname;
   render(path);
 }
 
 
 $(function () {
   init();
-  var path = window.location.search;
-  var path = path.replace('?dir=', '');
+  var path = window.location.pathname;
   /*$("body").on("click", '.folder', function () {
       var url = $(this).attr('href');
       history.pushState(null, null, url);
