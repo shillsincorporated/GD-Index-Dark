@@ -1005,7 +1005,8 @@ window.onpopstate = function () {
 
 $(function () {
   init();
-  var path = window.location.href;
+  var path = window.location.search;
+  var path = path.replace('?dir=', '');
   /*$("body").on("click", '.folder', function () {
       var url = $(this).attr('href');
       history.pushState(null, null, url);
