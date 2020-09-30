@@ -8,7 +8,23 @@ document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/mark
 // Initialize the page and load the necessary resources
 function init(){
     document.siteName = $('title').html();
+    $('body').addClass("mdui-theme-primary-"+main_color+" mdui-theme-accent-"+accent_color);
     var html = "";
+    html += `
+    <header class="mdui-appbar mdui-color-theme">`
+    if(dark){
+        html += `
+        <div id="nav" class="mdui-toolbar mdui-container mdui-text-color-white-text">
+        </div>`;
+    }else{
+        html += `
+        <div id="nav" class="mdui-toolbar mdui-container">
+        </div>`;
+    }
+html += `
+    </header>
+        <div id="content" class="mdui-container"> 
+        </div>`;
     $('body').html(html);
 }
 
