@@ -87,9 +87,9 @@ function title(path) {
   // $('title').html(document.siteName + ' - ' + path);
   var model = window.MODEL;
   if (model.is_search_page)
-    $('title').html(`${document.siteName} - ${drive_name} - Search Result for ${model.q} `);
+    $('title').html(`${drive_name} - Search Result for ${model.q} `);
   else
-    $('title').html(`${document.siteName} - ${drive_name} - ${path}`);
+    $('title').html(`${drive_name} - ${path}`);
 }
 
 // Render the navigation bar
@@ -97,7 +97,7 @@ function nav(path) {
   var model = window.MODEL;
   var html = "";
   var cur = window.current_drive_order || 0;
-  html += `<a href="/${cur}:/" class="mdui-typo-headline folder">${document.siteName}</a>`;
+  // html += `<a href="/${cur}:/" class="mdui-typo-headline folder">${document.siteName}</a>`;
   var names = window.drive_names;
   /*html += `<button class="mdui-btn mdui-btn-raised" mdui-menu="{target: '#drive-names'}"><i class="mdui-icon mdui-icon-left material-icons">share</i> ${names[cur]}</button>`;
   html += `<ul class="mdui-menu" id="drive-names" style="transform-origin: 0px 0px; position: fixed;">`;
