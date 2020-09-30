@@ -37,7 +37,6 @@ function render(path) {
   //if (path.indexOf("?") > 0) {
   //  path = path.substr(0, path.indexOf("?"));
   //}
-  console.log(path)
   title(path);
   nav(path);
   // .../0: This
@@ -843,8 +842,8 @@ function file_pdf(path) {
 // picture display
 function file_image(path) {
   var url = window.location.origin + path;
-  // console.log(window.location.pathname)
-  const currentPathname = window.location.pathname
+  // console.log(window.location.href)
+  const currentPathname = window.location.href
   const lastIndex = currentPathname.lastIndexOf('/');
   const fatherPathname = currentPathname.slice(0, lastIndex + 1);
   // console.log(fatherPathname)
@@ -998,14 +997,14 @@ function markdown(el, data) {
 
 // Listen for fallback events
 window.onpopstate = function () {
-  var path = window.location.pathname;
+  var path = window.location.href;
   render(path);
 }
 
 
 $(function () {
   init();
-  var path = window.location.pathname;
+  var path = window.location.href;
   /*$("body").on("click", '.folder', function () {
       var url = $(this).attr('href');
       history.pushState(null, null, url);
