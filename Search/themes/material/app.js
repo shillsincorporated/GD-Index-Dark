@@ -9,10 +9,10 @@ document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/mark
 function init(){
     document.siteName = $('title').html();
     $('body').addClass("mdui-theme-primary-"+main_color+" mdui-theme-accent-"+accent_color);
-    var html = "";
-    html += `
+    var html = $('body').html;
+    html = html.replace('INSERTMEHERE', `
         <div id="content" class="mdui-container"> 
-        </div>`;
+        </div>`);
     $('body').html(html);
 }
 
