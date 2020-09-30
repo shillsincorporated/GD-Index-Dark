@@ -11,18 +11,6 @@ function init(){
     $('body').addClass("mdui-theme-primary-"+main_color+" mdui-theme-accent-"+accent_color);
     var html = "";
     html += `
-    <header class="mdui-appbar mdui-color-theme">`
-    if(dark){
-        html += `
-        <div id="nav" class="mdui-toolbar mdui-container mdui-text-color-white-text">
-        </div>`;
-    }else{
-        html += `
-        <div id="nav" class="mdui-toolbar mdui-container">
-        </div>`;
-    }
-html += `
-    </header>
         <div id="content" class="mdui-container"> 
         </div>`;
     $('body').html(html);
