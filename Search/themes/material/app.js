@@ -37,6 +37,7 @@ function render(path) {
   //if (path.indexOf("?") > 0) {
   //  path = path.substr(0, path.indexOf("?"));
   //}
+  console.log(path)
   title(path);
   nav(path);
   // .../0: This
