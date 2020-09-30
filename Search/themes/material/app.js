@@ -339,7 +339,7 @@ function append_files_to_list(path, files) {
 	            </a>
 	        </li>`;
     } else {
-      var p = item.name;
+      var p = path + item.name;
       const filepath = path + item.name;
       var c = "file";
       // README is displayed after the last page is loaded, otherwise it will affect the scroll event
@@ -997,7 +997,8 @@ function markdown(el, data) {
 
 // Listen for fallback events
 window.onpopstate = function () {
-  var path = window.location.href;
+  var path = window.location.search;
+  var path = path.replace('?dir=', '');
   render(path);
 }
 
