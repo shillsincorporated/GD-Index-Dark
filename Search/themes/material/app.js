@@ -842,8 +842,8 @@ function file_pdf(path) {
 // picture display
 function file_image(path) {
   var url = window.location.origin + path;
-  // console.log(window.location.pathname)
-  const currentPathname = window.location.pathname
+  // console.log(window.location.pathname + window.location.search)
+  const currentPathname = window.location.pathname + window.location.search
   const lastIndex = currentPathname.lastIndexOf('/');
   const fatherPathname = currentPathname.slice(0, lastIndex + 1);
   // console.log(fatherPathname)
@@ -997,14 +997,14 @@ function markdown(el, data) {
 
 // Listen for fallback events
 window.onpopstate = function () {
-  var path = window.location.pathname;
+  var path = window.location.pathname + window.location.search;
   render(path);
 }
 
 
 $(function () {
   init();
-  var path = window.location.pathname;
+  var path = window.location.pathname + window.location.search;
   /*$("body").on("click", '.folder', function () {
       var url = $(this).attr('href');
       history.pushState(null, null, url);
