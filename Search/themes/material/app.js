@@ -339,7 +339,7 @@ function append_files_to_list(path, files) {
 	            </a>
 	        </li>`;
     } else {
-      var p = path + item.name;
+      var p = item.name;
       const filepath = path + item.name;
       var c = "file";
       // README is displayed after the last page is loaded, otherwise it will affect the scroll event
