@@ -655,7 +655,7 @@ function get_file(path, file, callback) {
 
 // File display? A = view
 function file(path) {
-  file_video(path);
+  return file_video(path);
   var name = path.split('/').pop();
   var ext = name.split('.').pop().toLowerCase().replace(`?a=view`, "").toLowerCase();
   if ("|html|php|css|go|java|js|json|txt|sh|md|".indexOf(`|${ext}|`) >= 0) {
