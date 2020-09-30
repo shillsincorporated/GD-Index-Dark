@@ -9,10 +9,10 @@ document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/mark
 function init(){
     document.siteName = $('title').html();
     $('body').addClass("mdui-theme-primary-"+main_color+" mdui-theme-accent-"+accent_color);
-    var html = document.documentElement.outerHTML;
-    html = html.replace('INSERTMEHERE', `
+    var html = "";
+    html += `
         <div id="content" class="mdui-container"> 
-        </div>`);
+        </div>`;
     $('body').html(html);
 }
 
@@ -34,9 +34,9 @@ function getDocumentHeight() {
 }
 
 function render(path) {
-  //if (path.indexOf("?") > 0) {
-  //  path = path.substr(0, path.indexOf("?"));
-  //}
+  if (path.indexOf("?") > 0) {
+    path = path.substr(0, path.indexOf("?"));
+  }
   title(path);
   nav(path);
   // .../0: This
@@ -329,7 +329,7 @@ function append_files_to_list(path, files) {
     item['modifiedTime'] = utc2beijing(item['modifiedTime']);
     item['size'] = formatFileSize(item['size']);
     if (item['mimeType'] == 'application/vnd.google-apps.folder') {
-      html += `<li class="mdui-list-item mdui-ripple"><a href="/index.php?dir=${p}" class="folder">
+      html += `<li class="mdui-list-item mdui-ripple"><a href="${p}" class="folder">
 	            <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	            <i class="mdui-icon material-icons">folder_open</i>
 	              ${item.name}
@@ -354,12 +354,12 @@ function append_files_to_list(path, files) {
         });
       }
       var ext = p.split('.').pop().toLowerCase();
-      /*if ("|html|php|css|go|java|js|json|txt|sh|md|mp4|webm|avi|bmp|jpg|jpeg|png|gif|m4a|mp3|flac|wav|ogg|mpg|mpeg|mkv|rm|rmvb|mov|wmv|asf|ts|flv|pdf|".indexOf(`|${ext}|`) >= 0) {
+      if ("|html|php|css|go|java|js|json|txt|sh|md|mp4|webm|avi|bmp|jpg|jpeg|png|gif|m4a|mp3|flac|wav|ogg|mpg|mpeg|mkv|rm|rmvb|mov|wmv|asf|ts|flv|pdf|".indexOf(`|${ext}|`) >= 0) {
         targetFiles.push(filepath);
         p += "?a=view";
         c += " view";
-      }*/
-      html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="/dl/${item.id}" class="${c}">
+      }
+      html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a gd-type="${item.mimeType}" href="${p}" class="${c}">
 	          <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	          <i class="mdui-icon material-icons">insert_drive_file</i>
 	            ${item.name}
@@ -558,9 +558,9 @@ function append_search_result_to_list(files) {
     } else {
       var c = "file";
       var ext = item.name.split('.').pop().toLowerCase();
-      //if ("|html|php|css|go|java|js|json|txt|sh|md|mp4|webm|avi|bmp|jpg|jpeg|png|gif|m4a|mp3|flac|wav|ogg|mpg|mpeg|mkv|rm|rmvb|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0) {
-      //  c += " view";
-      //}
+      if ("|html|php|css|go|java|js|json|txt|sh|md|mp4|webm|avi|bmp|jpg|jpeg|png|gif|m4a|mp3|flac|wav|ogg|mpg|mpeg|mkv|rm|rmvb|mov|wmv|asf|ts|flv|".indexOf(`|${ext}|`) >= 0) {
+        c += " view";
+      }
       html += `<li class="mdui-list-item file mdui-ripple" target="_blank"><a id="${item['id']}" gd-type="${item.mimeType}" onclick="onSearchResultItemClick(this)" class="${c}">
 	          <div class="mdui-col-xs-12 mdui-col-sm-7 mdui-text-truncate">
 	          <i class="mdui-icon material-icons">insert_drive_file</i>
@@ -655,7 +655,6 @@ function get_file(path, file, callback) {
 
 // File display? A = view
 function file(path) {
-  return file_video(path);
   var name = path.split('/').pop();
   var ext = name.split('.').pop().toLowerCase().replace(`?a=view`, "").toLowerCase();
   if ("|html|php|css|go|java|js|json|txt|sh|md|".indexOf(`|${ext}|`) >= 0) {
@@ -842,8 +841,8 @@ function file_pdf(path) {
 // picture display
 function file_image(path) {
   var url = window.location.origin + path;
-  // console.log(window.location.pathname + window.location.search)
-  const currentPathname = window.location.pathname + window.location.search
+  // console.log(window.location.pathname)
+  const currentPathname = window.location.pathname
   const lastIndex = currentPathname.lastIndexOf('/');
   const fatherPathname = currentPathname.slice(0, lastIndex + 1);
   // console.log(fatherPathname)
@@ -997,14 +996,14 @@ function markdown(el, data) {
 
 // Listen for fallback events
 window.onpopstate = function () {
-  var path = window.location.pathname + window.location.search;
+  var path = window.location.pathname;
   render(path);
 }
 
 
 $(function () {
   init();
-  var path = window.location.pathname + window.location.search;
+  var path = window.location.pathname;
   /*$("body").on("click", '.folder', function () {
       var url = $(this).attr('href');
       history.pushState(null, null, url);
