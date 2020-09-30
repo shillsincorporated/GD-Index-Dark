@@ -9,7 +9,7 @@ document.write('<script src="//cdn.jsdelivr.net/npm/markdown-it@10.0.0/dist/mark
 function init(){
     document.siteName = $('title').html();
     $('body').addClass("mdui-theme-primary-"+main_color+" mdui-theme-accent-"+accent_color);
-    var html = $('body').html;
+    var html = document.documentElement.outerHTML;
     html = html.replace('INSERTMEHERE', `
         <div id="content" class="mdui-container"> 
         </div>`);
