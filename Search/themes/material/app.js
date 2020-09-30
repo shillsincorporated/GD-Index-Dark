@@ -34,9 +34,9 @@ function getDocumentHeight() {
 }
 
 function render(path) {
-  if (path.indexOf("?") > 0) {
-    path = path.substr(0, path.indexOf("?"));
-  }
+  //if (path.indexOf("?") > 0) {
+  //  path = path.substr(0, path.indexOf("?"));
+  //}
   title(path);
   nav(path);
   // .../0: This
